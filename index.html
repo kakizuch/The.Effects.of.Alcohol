@@ -1,3 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<style type="text/css">
+	html, body {
+		margin: 0;
+		top: 0;
+		left;
+	}
+	.tooltip {
+		color: white;
+		font-family:'Helvetica Neue', sans-serif;
+		font-size:1em;
+		font-weight:800;
+		border:0.5px solid #fff;
+		position:fixed;
+		background-color:black;
+		opacity:0;
+		padding:1%;
+/*		transition:0.25s ease-in-out;*/
+	}
+	.tooltip img {
+		background-color: black;
+		width: 25em;
+		height: auto;
+/*		transition: 0.5s ease-in-out;*/
+	}
+</style>
+<body>
+
+<!-- insert svg code here -->
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 25.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -719,8 +752,8 @@
 		<clipPath id="SVGID_6_">
 			<use xlink:href="#SVGID_5_"  style="overflow:visible;"/>
 		</clipPath>
-		<g class="st8">
-			<g>
+		<g onclick="updateImgTooltip('photos/first.png')" onmouseout="clearTooltip()" class="st8">
+			<g onclick="updateImgTooltip('photos/first.png')" onmouseout="clearTooltip()">
 				<defs>
 					<path id="SVGID_7_" d="M436.88,687.59c-3.95,0-7.7-0.18-11.27-0.5c-29.22-2.65-45.71-15.53-54.97-28.32
 						c-10.01-13.81-11.58-27.49-11.64-28.03c0-0.01-0.01-0.02-0.01-0.02s0-0.01,0-0.02c-0.26-0.84-9.76-33.11,8.77-78.21
@@ -4181,3 +4214,45 @@
 		C1411.5,527.71,1409.69,528.49,1408.03,529.17"/>
 </g>
 </svg>
+
+<!-- end svg code here -->
+
+<div class="tooltip"></div>
+
+</body>
+<script type="text/javascript">
+
+let tooltip=document.querySelector('.tooltip')
+
+// gets position of mouse on the page
+function getpos(event) {
+	var e = window.event;
+	x = e.clientX ;
+	y = e.clientY ;
+} 
+
+function updateTooltip(text_to_display){
+	tooltip.innerHTML=text_to_display
+	getpos()
+	tooltip.style.opacity=1
+	tooltip.style.left=x+30+"px"
+	tooltip.style.top=y-30+"px"
+}
+
+function updateImgTooltip(img_to_display){
+	tooltip.innerHTML=''
+	tooltip.style.opacity=1
+	picture = document.createElement('img')
+	picture.src=img_to_display
+	tooltip.appendChild(picture)
+	getpos()
+	tooltip.style.left=x+30+"px"
+	tooltip.style.top=y-30+"px"
+}
+
+function clearTooltip() {
+	tooltip.style.opacity=0
+}
+
+</script>
+</html>
